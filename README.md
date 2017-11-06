@@ -22,7 +22,13 @@ This container is based on https://github.com/ovh/svfs/
 
 ### Options
 
-You can use some env variables to change mount parameters : `UID` (default: 1000), `GID` (default: 1000) and `MODE` (default: 0755)
+You can use some env variables to change mount parameters : 
+
+    - `UID` (default: 1000)
+    - `GID` (default: 1000)
+    - `MODE` (default: 0755)
+    - `CONNECT_TIMEOUT` (default: 15s)
+    - `SEGMENT_SIZE` (default: 256)
 
 Exemple :
 
