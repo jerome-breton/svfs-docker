@@ -20,6 +20,14 @@ This container is based on https://github.com/ovh/svfs/
 
 6. Launch `docker run -ti --rm --device /dev/fuse --cap-add SYS_ADMIN --privileged --volume=/local/directory/for/mount:/ovh:shared --volume=/path/to/svfs.yaml:/etc/svfs.yaml:ro jeromebreton/svfs`
 
+### Options
+
+You can use some env variables to change mount parameters : `UID` (default: 1000), `GID` (default: 1000) and `MODE` (default: 0755)
+
+Exemple :
+
+    `docker run -ti --rm --device /dev/fuse --cap-add SYS_ADMIN --privileged --env MODE=0777 --volume=/path/to/svfs.yaml:/etc/svfs.yaml:ro jeromebreton/svfs`
+
 ## Mount OVH Public Cloud Storage or Swift endpoint
 
 I do not have any endpoint like this to test at the moment, but you should be able to connect one by writing a svfs.yaml containing your config :
