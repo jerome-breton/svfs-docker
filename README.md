@@ -28,6 +28,28 @@ Exemple :
 
     `docker run -ti --rm --device /dev/fuse --cap-add SYS_ADMIN --privileged --env MODE=0777 --volume=/path/to/svfs.yaml:/etc/svfs.yaml:ro jeromebreton/svfs`
 
+### Docker Compose
+
+You can use docker compose instead of the docker run command : 
+
+    version: '2'
+    services:
+      hubic:
+        container_name: hubic
+        image: jeromebreton/svfs
+        restart: unless-stopped
+        volumes:
+          - ./svfs.yaml:/etc/svfs.yaml:ro
+          - ./mount:/ovh:shared
+        devices:
+          - /dev/fuse
+        cap_add:
+          - SYS_ADMIN
+        privileged: true
+        environment:
+          - MODE=0775
+
+
 ## Mount OVH Public Cloud Storage or Swift endpoint
 
 I do not have any endpoint like this to test at the moment, but you should be able to connect one by writing a svfs.yaml containing your config :
