@@ -24,15 +24,16 @@ This container is based on https://github.com/ovh/svfs/
 
 You can use some env variables to change mount parameters : 
 
-    - `UID` (default: 1000)
-    - `GID` (default: 1000)
-    - `MODE` (default: 0755)
-    - `CONNECT_TIMEOUT` (default: 15s)
-    - `SEGMENT_SIZE` (default: 256)
+- `UID` (default: 1000)
+- `GID` (default: 1000)
+- `MODE` (default: 0755)
+- `ARGS` to add any arg you want. Get help by running `docker run -ti --rm jeromebreton/svfs svfs mount --help`
 
 Exemple :
 
-    `docker run -ti --rm --device /dev/fuse --cap-add SYS_ADMIN --privileged --env MODE=0777 --volume=/path/to/svfs.yaml:/etc/svfs.yaml:ro jeromebreton/svfs`
+    docker run -ti --rm --device /dev/fuse --cap-add SYS_ADMIN --privileged \
+               --env MODE=0777 --env ARGS="--allow-other --os-connect-timeout=5m --os-segment-size=1024" 
+               --volume=/path/to/svfs.yaml:/etc/svfs.yaml:ro jeromebreton/svfs
 
 ### Docker Compose
 
